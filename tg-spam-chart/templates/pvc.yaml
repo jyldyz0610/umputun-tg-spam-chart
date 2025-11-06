@@ -1,17 +1,15 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "tg-spam.fullname" . }}-data
+  name: {{ include "tg-spam.fullname" . }}-tg-data
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ include "tg-spam.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "tg-spam.labels" . | nindent 4 }}
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: {{ .Values.storage.storageClass | quote }}
   resources:
     requests:
-      storage: {{ .Values.storage.tgDataSize | quote }}
+      storage: {{ .Values.tgspam.storage | default "1Gi" }}
 
 
