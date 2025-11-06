@@ -1,24 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ include "tg-spam.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ .Release.Name }}
-  annotations:
-    {{- with .Values.labels }}
-    {{ toYaml . | nindent 4 }}
-    {{- end }}
+    {{- include "tg-spam.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ include "tg-spam.fullname" . }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
-
+        app: {{ include "tg-spam.fullname" . }}
     spec:
       securityContext:
         runAsUser: 1000
@@ -43,7 +38,7 @@ spec:
             - name: TELEGRAM_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.secretName | default "tg-spam-secret" }}
+                  name: {{ .Values.secretName | default "tg-spam-bots-secret" }}
                   key: {{ .Values.tgspam.env.TELEGRAM_TOKEN_KEY }}
             - name: OPENAI_API_KEY
               valueFrom:
@@ -65,4 +60,5 @@ spec:
       volumes:
         - name: tg-data
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-tg-data
+            claimName: {{ include "tg-spam.fullname" . }}-tg-data
+
