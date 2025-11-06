@@ -3,11 +3,11 @@ entries:
   tg-spam:
   - apiVersion: v2
     appVersion: latest
-    created: "2025-11-06T20:52:54.638252033+01:00"
+    created: "2025-11-06T21:42:21.4556034+01:00"
     description: Helm chart to deploy tg-spam bot
-    digest: a2cf9d8bf56f1113ec8f33154f2cf6b0d8f2ee0eca2960b341006ca23b50a5e1
+    digest: 716fbc6d6ae2daa9849c95816a5c4ae4bfc79865db1f4ffa5d7835725c95a5ab
     name: tg-spam
     urls:
-    - https://stufently.github.io/umputun-tg-spam-chart/tg-spam-0.1.0.tgz
+    - https://jyldyz0610.github.io/umputun-tg-spam-chart/tg-spam-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-06T20:52:54.628564975+01:00"
+generated: "2025-11-06T21:42:21.445542801+01:00"
